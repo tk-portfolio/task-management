@@ -1,0 +1,89 @@
+/* 全体の背景色を設定 */
+body {
+  background-color: #f0f2f5;
+  /* 少しグレーにすると各パーツが浮き出て綺麗 */
+  margin: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.app-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.app-header h1 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  letter-spacing: -1px;
+}
+
+/* 各セクションの間に適切な余白を作る */
+.app-content>section,
+.app-content>aside {
+  margin-bottom: 40px;
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  max-width: 580px;
+  width: 100%;
+  margin: 0 auto 25px auto;
+}
+
+.sort-label {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #64748b;
+}
+
+.sort-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.sort-chip {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+  color: #64748b;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sort-chip:hover {
+  background-color: #edf2f7;
+}
+
+/* 選択中のスタイル */
+.sort-chip.is-active {
+  background-color: #409eff;
+  /* カテゴリと同じアクセントカラー */
+  color: #fff;
+  border-color: #409eff;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(64, 158, 255, 0.3);
+}
+
+/* 少し高度：PCサイズではフォームとリストを横に並べることも可能 */
+@media (min-width: 768px) {
+  .app-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

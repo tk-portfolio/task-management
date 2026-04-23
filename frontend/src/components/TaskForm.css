@@ -1,0 +1,158 @@
+.task-form-container {
+    max-width: 450px;
+    margin: 0 auto 20px auto;
+    /* 下に少し余白を追加 */
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e0e4e8;
+}
+
+/* ヘッダー：タイトルとボタンをきれいに配置 */
+.task-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* 展開していない時は下の余白を消す */
+    margin-bottom: 0;
+    transition: margin-bottom 0.3s;
+}
+
+.task-form-header h2 {
+    margin: 0;
+    /* margin-bottomをヘッダー側で制御 */
+    color: #333;
+    font-size: 1.25rem;
+}
+
+/* ＋ / − ボタン */
+.toggle-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    /* 角丸を他の入力欄と合わせる */
+    border: 1px solid #dcdfe6;
+    background-color: #f4f4f5;
+    color: #606266;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+    padding: 0;
+}
+
+.toggle-btn:hover {
+    border-color: #409eff;
+    color: #409eff;
+    background-color: #f9fbff;
+}
+
+.toggle-btn.is-active {
+    background-color: #f4f4f5;
+    border-color: #dcdfe6;
+    color: #606266;
+}
+
+.toggle-btn.is-active:hover {
+    background-color: #fef0f0;
+    border-color: #fbc4c4;
+    color: #f56c6c;
+}
+
+/* 折りたたみアニメーションのコア */
+.form-expandable {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out;
+    overflow: hidden;
+}
+
+.form-expandable.is-open {
+    margin-top: 24px;
+    grid-template-rows: 1fr;
+}
+
+/* フォーム内部 */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #666;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dcdfe6;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #409eff;
+    background-color: #f9fbff;
+}
+
+.cancel-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #f56c6c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-top: 10px;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #409eff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-top: 10px;
+}
+
+.cancel-button:hover {
+    background-color: #fd8f8f;
+}
+
+.cancel-button:active {
+    transform: scale(0.98);
+}
+
+.submit-button:hover {
+    background-color: #66b1ff;
+}
+
+.submit-button:active {
+    transform: scale(0.98);
+}
+
+.form-expandable>form {
+    min-height: 0;
+    overflow: hidden;
+}

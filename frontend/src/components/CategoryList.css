@@ -1,0 +1,77 @@
+/* 外枠のコンテナはタスク一覧と揃える */
+.category-list-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.category-list-container h2 {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    padding-left: 10px;
+}
+
+/* リスト構造をタスク一覧と統一 */
+.category-list-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* タスクカードのデザインを踏襲 */
+.category-list-container li {
+    background: #fff;
+    margin-bottom: 12px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    /* タスクと同じ影 */
+    border-left: 6px solid;
+    /* アクセントカラーを統一 */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.2s ease;
+}
+
+/* カテゴリ名はタスクのタイトルと揃える */
+.category-name {
+    font-weight: bold;
+    font-size: 1.05rem;
+    color: #2c3e50;
+    margin: 0;
+}
+
+/* 説明文はタスクのデスクと揃える */
+.category-description {
+    margin: 0;
+    color: #5f6c7b;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* カテゴリ一覧独自のホバー演出 */
+.category-list-container li:hover {
+    transform: translateX(5px);
+    /* 横に少しスライドさせるのが「一覧」っぽい */
+    cursor: pointer;
+}
+
+/* 削除ボタン */
+.delete-btn {
+    background: #fff;
+    color: #ff4d4f;
+    border: 1px solid #ff4d4f;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.delete-btn:hover {
+    background: #ff4d4f;
+    color: #fff;
+}

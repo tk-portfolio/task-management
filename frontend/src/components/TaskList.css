@@ -1,0 +1,134 @@
+.task-items {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.task-card {
+    display: flex;
+    /* 横並びにする */
+    justify-content: space-between;
+    /* 両端に寄せる */
+    align-items: center;
+    background: #fff;
+    margin-bottom: 15px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-left: 6px solid;
+    /* アクセントカラー */
+}
+
+/* 左側の情報エリア */
+.task-main {
+    flex: 1;
+    /* 残りの幅をすべて使う */
+    text-align: left;
+}
+
+.task-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.task-title {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #2c3e50;
+}
+
+.task-desc {
+    margin: 0 0 12px 0;
+    color: #5f6c7b;
+    font-size: 0.95rem;
+}
+
+.task-side {
+    display: flex;
+    gap: 8px;
+}
+
+/* バッジや日付の装飾 */
+.priority-badge {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #eee;
+    font-weight: bold;
+}
+
+/* 進捗率 */
+.progress-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.progress-bar {
+    width: 120px;
+    height: 8px;
+    background: #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #4caf50;
+    transition: width 0.3s ease;
+}
+
+/* 優先度別の色分け */
+/* 高 */
+.p2 {
+    background: #ffe3e3;
+    color: #ff4d4f;
+}
+
+/* 低 */
+.p0 {
+    background: #e3f2fd;
+    color: #2196f3;
+}
+
+.task-footer {
+    display: flex;
+    gap: 15px;
+    font-size: 0.85rem;
+    color: #999;
+}
+
+/* 編集ボタン */
+.edit-btn {
+    background: #fff;
+    color: #18ca6e;
+    border: 1px solid #18ca6e;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.edit-btn:hover {
+    background: #18ca6e;
+    color: #fff;
+}
+
+/* 削除ボタン */
+.delete-btn {
+    background: #fff;
+    color: #ff4d4f;
+    border: 1px solid #ff4d4f;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.delete-btn:hover {
+    background: #ff4d4f;
+    color: #fff;
+}
