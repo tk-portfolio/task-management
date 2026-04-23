@@ -156,3 +156,21 @@
     min-height: 0;
     overflow: hidden;
 }
+
+.error {
+    color: #f56c6c;
+    font-size: 12px;
+    margin-top: 6px;
+    margin-left: 2px;
+
+    opacity: 0;
+    transform: translateY(-4px);
+    animation: errorFade 0.2s ease forwards;
+}
+
+@keyframes errorFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

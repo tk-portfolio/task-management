@@ -12,11 +12,50 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
     const [dueDate, setDueDate] = useState("");
     const [categoryId, setCategoryId] = useState(0);
     const [progress, setProgress] = useState(0)
+    const [errors, setErrors] = useState({});
 
     const formRef = useRef(null);
 
+    // ヴァリデーションチェック
+    const validate = () => {
+        const newErrors = {};
+
+        if (!title.trim()) {
+            newErrors.title = "タスク名は必須です";
+        }
+
+        if (title.length > 50) {
+            newErrors.title = "50文字以内で入力してください";
+        }
+
+        if (description.length > 200) {
+            newErrors.description = "200文字以内で入力してください";
+        }
+
+        if (categoryId === 0) {
+            newErrors.category = "カテゴリーを選択してください";
+        }
+
+        setErrors(newErrors);
+
+        const isValid = Object.keys(newErrors).length === 0;
+
+        // エラーがあればフォームの一番上にスクロール
+        if (!isValid) {
+            formRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }
+
+        return isValid;
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // 入力エラー
+        if (!validate()) return;
 
         const isEdit = !!editingTask;
 
@@ -100,6 +139,7 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
         setCategoryId(0);
         setProgress(0);
 
+        setErrors({});
         setIsExpanded(false);
     };
 
@@ -131,6 +171,7 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
                             onChange={(e) => setTitle(e.target.value)}
                             placeholder="何をする？"
                         />
+                        {errors.title && <p className="error">{errors.title}</p>}
                     </div>
 
                     <div className="form-group">
@@ -139,6 +180,7 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
+                        {errors.description && <p className="error">{errors.description}</p>}
                     </div>
 
                     <div className="form-group">
@@ -199,6 +241,7 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
                                 </option>
                             ))}
                         </select>
+                        {errors.category && <p className="error">{errors.category}</p>}
                     </div>
 
                     {editingTask && (
