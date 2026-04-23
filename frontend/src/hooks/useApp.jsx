@@ -56,13 +56,32 @@ export const useApp = () => {
         const aDone = a.progress === 100;
         const bDone = b.progress === 100;
 
-        if (aDone && !bDone) return 1;
-        if (!aDone && bDone) return -1;
+        if (aDone !== bDone) return aDone ? 1 : -1;
 
-        if (sortBy === "priority") return b.priority - a.priority;
-        if (sortBy === "dueDate") return new Date(a.dueDate) - new Date(b.dueDate);
-        if (sortBy === "category") return a.categoryId - b.categoryId;
+        if (sortBy === "priority") {
+            if (a.priority !== b.priority) {
+                return b.priority - a.priority;
+            }
+        }
 
+        if (sortBy === "progress") {
+            if (a.progress !== b.progress) {
+                return a.progress - b.progress;
+            }
+        }
+
+        if (sortBy === "dueDate") {
+            const diff = new Date(a.dueDate) - new Date(b.dueDate);
+            if (diff !== 0) return diff;
+        }
+
+        if (sortBy === "category") {
+            if (a.categoryId !== b.categoryId) {
+                return a.categoryId - b.categoryId;
+            }
+        }
+
+        // 完全一致時のみ
         return a.id - b.id;
     });
 

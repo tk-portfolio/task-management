@@ -45,6 +45,7 @@ function App() {
             {[
               { id: "id", label: "登録順" },
               { id: "priority", label: "優先度順" },
+              { id: "progress", label: "進捗順" },
               { id: "dueDate", label: "期限順" },
               { id: "category", label: "カテゴリー別" },
             ].map((option) => (
