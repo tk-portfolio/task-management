@@ -9,6 +9,7 @@ import com.example.backend.dto.request.CategoryRequest;
 import com.example.backend.dto.response.CategoryResponse;
 import com.example.backend.entity.Category;
 import com.example.backend.repository.CategoryRepository;
+import com.example.backend.repository.TaskRepository;
 import com.example.backend.service.CategoryService;
 
 import lombok.AllArgsConstructor;
@@ -18,6 +19,8 @@ import lombok.AllArgsConstructor;
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
+
+    private final TaskRepository taskRepository;
 
     public List<CategoryResponse> getAllCategories() {
         List<Category> categories = categoryRepository.findAll();
@@ -41,9 +44,15 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     public void deleteCategory(Long id) {
+
         if (!categoryRepository.existsById(id)) {
             throw new RuntimeException("Category not found");
         }
+
+        if (taskRepository.existsByCategoryId(id)) {
+            throw new IllegalStateException("使用中のカテゴリは削除できません");
+        }
+
         categoryRepository.deleteById(id);
     }
 }

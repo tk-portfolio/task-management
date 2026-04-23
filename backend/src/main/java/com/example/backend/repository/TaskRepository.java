@@ -6,4 +6,6 @@ import com.example.backend.entity.Task;
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
+    boolean existsByCategoryId(Long categoryId);
+
 }

@@ -36,13 +36,18 @@ export const useApp = () => {
         }
     };
 
-    // カテゴリ削除
+    // カテゴリー削除
     const categoryDelete = async (id) => {
         try {
             const res = await fetch(`http://localhost:8080/api/categories/${id}`, {
                 method: "DELETE",
             });
-            if (!res.ok) throw new Error();
+
+            if (!res.ok) {
+                const msg = await res.text();
+                alert(msg);
+                return;
+            }
 
             fetchCategories();
 

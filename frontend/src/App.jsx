@@ -1,7 +1,5 @@
 import "./App.css";
 
-// 【React入門】完全初心者OK！１から簡単なTodoアプリを作ってReactの１歩を踏み出してみよう ~Reactチュートリアル~
-
 import CategoryForm from "./components/CategoryForm";
 import CategoryList from "./components/CategoryList";
 import TaskForm from "./components/TaskForm";
