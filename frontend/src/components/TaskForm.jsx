@@ -130,7 +130,9 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
 
     //編集キャンセル
     const handleCancel = () => {
-        setEditingTask(null);
+        if (setEditingTask) {
+            setEditingTask(null);
+        }
 
         setTitle("");
         setDescription("");
@@ -141,6 +143,13 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
 
         setErrors({});
         setIsExpanded(false);
+
+        setTimeout(() => {
+            formRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "end",
+            });
+        }, 100);
     };
 
 
@@ -244,11 +253,11 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
                         {errors.category && <p className="error">{errors.category}</p>}
                     </div>
 
-                    {editingTask && (
-                        <button type="button" className="cancel-button" onClick={handleCancel}>
-                            キャンセル
-                        </button>
-                    )}
+
+                    <button type="button" className="cancel-button" onClick={handleCancel}>
+                        キャンセル
+                    </button>
+
                     <button type="submit" className="submit-button">
                         {editingTask ? "保存" : "登録"}
                     </button>

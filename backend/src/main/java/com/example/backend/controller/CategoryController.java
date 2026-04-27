@@ -33,8 +33,9 @@ public class CategoryController {
 
     // カテゴリー追加
     @PostMapping("/add")
-    public CategoryResponse addCategory(@RequestBody CategoryRequest categoryRequest) {
-        return categoryService.addCategory(categoryRequest);
+    public ResponseEntity<CategoryResponse> addCategory(@RequestBody CategoryRequest categoryRequest) {
+        CategoryResponse response = categoryService.addCategory(categoryRequest);
+        return ResponseEntity.ok(response);
     }
 
     // カテゴリー削除
