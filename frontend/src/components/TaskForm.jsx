@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./TaskForm.css";
 
-
 export default function TaskForm({ categories, editingTask, setEditingTask, fetchTasks }) {
 
     const [isExpanded, setIsExpanded] = useState(false);
@@ -16,7 +15,7 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
 
     const formRef = useRef(null);
 
-    // ヴァリデーションチェック
+    // バリデーションチェック
     const validate = () => {
         const newErrors = {};
 
@@ -52,6 +51,7 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
     };
 
     const handleSubmit = async (e) => {
+        // 画面再読み込みを止める
         e.preventDefault();
 
         // 入力エラー
@@ -68,6 +68,7 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
             progress,
         };
 
+        // タスク編集か追加のAPI切り替え
         const url = isEdit
             ? `http://localhost:8080/api/task/${editingTask.id}`
             : "http://localhost:8080/api/task/add";
@@ -112,6 +113,7 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
             // フォーム開く
             setIsExpanded(true);
 
+            // 編集対象のデータをフォームに入れる
             setTitle(editingTask.title);
             setDescription(editingTask.description);
             setProgress(editingTask.progress);
@@ -119,6 +121,7 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
             setDueDate(editingTask.dueDate);
             setCategoryId(editingTask.categoryId);
 
+            // フォーム最上部にスクロール
             setTimeout(() => {
                 formRef.current?.scrollIntoView({
                     behavior: "smooth",
@@ -134,6 +137,7 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
             setEditingTask(null);
         }
 
+        // リセット
         setTitle("");
         setDescription("");
         setPriority(1);
@@ -144,6 +148,7 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
         setErrors({});
         setIsExpanded(false);
 
+        // キャンセル時に画面がフォームの最下部にスクロールされる
         setTimeout(() => {
             formRef.current?.scrollIntoView({
                 behavior: "smooth",

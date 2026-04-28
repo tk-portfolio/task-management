@@ -18,6 +18,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border-left: 6px solid;
     gap: 16px;
+    transition: transform 0.2s ease;
 }
 
 /* 左側の情報エリア */
@@ -140,4 +141,10 @@
 .delete-btn:hover {
     background: #ff4d4f;
     color: #fff;
+}
+
+/* ホバー演出 */
+.task-card:hover {
+    transform: translateX(5px);
+    cursor: pointer;
 }

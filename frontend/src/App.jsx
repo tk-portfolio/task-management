@@ -5,7 +5,7 @@ import CategoryList from "./components/CategoryList";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 
-import { useApp } from "./hooks/useApp";
+import { useApp } from "./useApp";
 
 function App() {
   const {

@@ -25,10 +25,7 @@
     padding: 16px 20px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    /* タスクと同じ影 */
     border-left: 6px solid;
-    /* アクセントカラーを統一 */
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -53,10 +50,9 @@
     line-height: 1.5;
 }
 
-/* カテゴリ一覧独自のホバー演出 */
+/* ホバー演出 */
 .category-list-container li:hover {
     transform: translateX(5px);
-    /* 横に少しスライドさせるのが「一覧」っぽい */
     cursor: pointer;
 }
 

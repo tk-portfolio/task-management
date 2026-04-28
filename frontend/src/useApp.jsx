@@ -90,11 +90,9 @@ export const useApp = () => {
         return a.id - b.id;
     });
 
+    // 初期表示
     useEffect(() => {
         fetchTasks();
-    }, []);
-
-    useEffect(() => {
         fetchCategories();
     }, []);
 

@@ -26,6 +26,7 @@ public class TaskRequest {
 
     private LocalDate dueDate;
 
+    // 0以外
     @Min(1)
     private Long categoryId;
 

@@ -45,10 +45,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     public void deleteCategory(Long id) {
 
+        // カテゴリーが存在しない場合
         if (!categoryRepository.existsById(id)) {
             throw new RuntimeException("Category not found");
         }
 
+        // 削除カテゴリーをタスクで使用している場合
         if (taskRepository.existsByCategoryId(id)) {
             throw new IllegalStateException("使用中のカテゴリは削除できません");
         }
