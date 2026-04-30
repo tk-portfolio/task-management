@@ -20,7 +20,7 @@ export default function CategoryForm({ setCategories }) {
         };
 
         try {
-            const res = await fetch("http://localhost:8080/api/categories/add", {
+            const res = await fetch("https://task-management-cwbi.onrender.com/api/categories/add", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

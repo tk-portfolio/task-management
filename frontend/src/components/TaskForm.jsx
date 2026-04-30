@@ -70,8 +70,8 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
 
         // タスク編集か追加のAPI切り替え
         const url = isEdit
-            ? `http://localhost:8080/api/task/${editingTask.id}`
-            : "http://localhost:8080/api/task/add";
+            ? `https://task-management-cwbi.onrender.com/api/task/${editingTask.id}`
+            : "https://task-management-cwbi.onrender.com/api/task/add";
 
         const method = isEdit ? "PUT" : "POST";
 

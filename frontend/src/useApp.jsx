@@ -17,7 +17,7 @@ export const useApp = () => {
 
     // カテゴリ一覧取得
     const fetchCategories = () => {
-        fetch("http://localhost:8080/api/categories/search")
+        fetch("https://task-management-cwbi.onrender.com/api/categories/search")
             .then((res) => res.json())
             .then(setCategories)
             .catch(console.error);
@@ -41,7 +41,7 @@ export const useApp = () => {
     // カテゴリー削除
     const categoryDelete = async (id) => {
         try {
-            const res = await fetch(`http://localhost:8080/api/categories/${id}`, {
+            const res = await fetch(`https://task-management-cwbi.onrender.com/api/categories/${id}`, {
                 method: "DELETE",
             });
 
