@@ -42,7 +42,7 @@ export const useApp = () => {
     // カテゴリー削除
     const categoryDelete = async (id) => {
         try {
-            const res = await fetch(`h${baseUrl}/api/categories/${id}`, {
+            const res = await fetch(`${baseUrl}/api/categories/${id}`, {
                 method: "DELETE",
             });
 
