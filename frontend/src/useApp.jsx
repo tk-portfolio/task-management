@@ -8,7 +8,8 @@ export const useApp = () => {
 
     // タスク一覧取得
     const fetchTasks = () => {
-        fetch("http://localhost:8080/api/task/search")
+        fetch("https://task-management-cwbi.onrender.com/api/task/search")
+            // fetch("http://localhost:8080/api/task/search")
             .then((res) => res.json())
             .then(setTasks)
             .catch(console.error);
@@ -25,7 +26,8 @@ export const useApp = () => {
     // タスク削除
     const taskDelete = async (id) => {
         try {
-            const res = await fetch(`http://localhost:8080/api/task/${id}`, {
+            const res = await fetch(`https://task-management-cwbi.onrender.com/api/task/${id}`, {
+                // const res = await fetch(`http://localhost:8080/api/task/${id}`, {
                 method: "DELETE",
             });
             if (!res.ok) throw new Error();
