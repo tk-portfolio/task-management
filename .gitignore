@@ -41,3 +41,6 @@ compose.yaml
 
 ### 環境変数ファイル ###
 .env
+
+### application.yaml ###
+backend/src/main/resources/application.yaml
