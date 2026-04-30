@@ -5,10 +5,11 @@ export const useApp = () => {
     const [categories, setCategories] = useState([]);
     const [sortBy, setSortBy] = useState("id");
     const [editingTask, setEditingTask] = useState(null);
+    const baseUrl = process.env.REACT_APP_API_URL;
 
     // タスク一覧取得
     const fetchTasks = () => {
-        fetch("https://task-management-cwbi.onrender.com/api/task/search")
+        fetch(`${baseUrl}/api/task/search`)
             // fetch("http://localhost:8080/api/task/search")
             .then((res) => res.json())
             .then(setTasks)
@@ -17,7 +18,7 @@ export const useApp = () => {
 
     // カテゴリ一覧取得
     const fetchCategories = () => {
-        fetch("https://task-management-cwbi.onrender.com/api/categories/search")
+        fetch(`${baseUrl}/api/categories/search`)
             .then((res) => res.json())
             .then(setCategories)
             .catch(console.error);
@@ -26,7 +27,7 @@ export const useApp = () => {
     // タスク削除
     const taskDelete = async (id) => {
         try {
-            const res = await fetch(`https://task-management-cwbi.onrender.com/api/task/${id}`, {
+            const res = await fetch(`${baseUrl}/api/task/${id}`, {
                 // const res = await fetch(`http://localhost:8080/api/task/${id}`, {
                 method: "DELETE",
             });
@@ -41,7 +42,7 @@ export const useApp = () => {
     // カテゴリー削除
     const categoryDelete = async (id) => {
         try {
-            const res = await fetch(`https://task-management-cwbi.onrender.com/api/categories/${id}`, {
+            const res = await fetch(`h${baseUrl}/api/categories/${id}`, {
                 method: "DELETE",
             });
 

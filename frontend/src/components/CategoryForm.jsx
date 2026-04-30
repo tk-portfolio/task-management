@@ -8,6 +8,7 @@ export default function CategoryForm({ setCategories }) {
     const [description, setDescription] = useState("");
     const [deleted, setDeleted] = useState(false);
     const [color, setColor] = useState("#409eff");
+    const baseUrl = process.env.REACT_APP_API_URL;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,7 +21,7 @@ export default function CategoryForm({ setCategories }) {
         };
 
         try {
-            const res = await fetch("https://task-management-cwbi.onrender.com/api/categories/add", {
+            const res = await fetch(`${baseUrl}/api/categories/add`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

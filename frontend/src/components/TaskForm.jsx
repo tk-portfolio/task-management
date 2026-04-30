@@ -14,6 +14,7 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
     const [errors, setErrors] = useState({});
 
     const formRef = useRef(null);
+    const baseUrl = process.env.REACT_APP_API_URL;
 
     // バリデーションチェック
     const validate = () => {
@@ -70,8 +71,8 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
 
         // タスク編集か追加のAPI切り替え
         const url = isEdit
-            ? `https://task-management-cwbi.onrender.com/api/task/${editingTask.id}`
-            : "https://task-management-cwbi.onrender.com/api/task/add";
+            ? `${baseUrl}/api/task/${editingTask.id}`
+            : `${baseUrl}/api/task/add`;
 
         const method = isEdit ? "PUT" : "POST";
 
