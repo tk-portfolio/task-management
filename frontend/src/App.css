@@ -92,7 +92,8 @@ body {
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s ease;
-  margin-top: 10px;
+  display: block;
+  margin: 10px 0 10px auto;
 }
 
 .logout-btn:hover {
