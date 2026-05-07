@@ -7,6 +7,8 @@ const LoginForm = ({ onLogin }) => {
     const [errors, setErrors] = useState({});
     const baseUrl = process.env.REACT_APP_API_URL;
 
+    const [showPassword, setShowPassword] = useState(false);
+
     // バリデーションチェック
     const validate = () => {
         const newErrors = {};
@@ -108,12 +110,22 @@ const LoginForm = ({ onLogin }) => {
                     </div>
                     <div className="form-group">
                         <label>パスワード</label>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="パスワードを入力"
-                        />
+                        <div className="password-input-wrapper">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="パスワードを入力"
+                                className="password-input"
+                            />
+                            <button
+                                type="button"
+                                className="password-toggle-btn"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? "🔓" : "🔒"}
+                            </button>
+                        </div>
                         {errors.password && <p className="error">{errors.password}</p>}
                     </div>
                     <button type="submit" className="login-submit-btn">
