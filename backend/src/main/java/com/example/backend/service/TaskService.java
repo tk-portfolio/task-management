@@ -7,11 +7,11 @@ import com.example.backend.dto.response.TaskResponse;
 
 public interface TaskService {
 
-    List<TaskResponse> getAllTasks();
+    List<TaskResponse> getAllTasks(Long userId);
 
     TaskResponse addTask(TaskRequest taskRequest);
 
     TaskResponse editTask(Long id, TaskRequest taskRequest);
 
-    void deleteTask(Long id);
+    void deleteTask(Long id, Long userId);
 }

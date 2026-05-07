@@ -1,6 +1,7 @@
 package com.example.backend.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     private final TaskRepository taskRepository;
 
-    public List<CategoryResponse> getAllCategories() {
-        List<Category> categories = categoryRepository.findAll();
+    public List<CategoryResponse> getAllCategories(Long userId) {
+        List<Category> categories = categoryRepository.findByUserId(userId);
         return categories.stream()
                 .map(CategoryResponse::fromEntity)
                 .collect(Collectors.toList());
@@ -37,17 +38,25 @@ public class CategoryServiceImpl implements CategoryService {
         category.setDescription(categoryRequest.getDescription());
         category.setDeleted(categoryRequest.getDeleted());
         category.setColor(categoryRequest.getColor());
+        category.setUserId(categoryRequest.getUserId());
 
         Category saved = categoryRepository.save(category);
 
         return CategoryResponse.fromEntity(saved);
     }
 
-    public void deleteCategory(Long id) {
+    public void deleteCategory(Long id, Long userId) {
+
+        // 自分のカテゴリーの中にそのカテゴリーがあるか検索
+        Optional<Category> categoryOpt = categoryRepository.findByIdAndUserId(id, userId);
+
+        if (!categoryOpt.isPresent()) {
+            throw new RuntimeException("他人のカテゴリーは削除できません");
+        }
 
         // カテゴリーが存在しない場合
         if (!categoryRepository.existsById(id)) {
-            throw new RuntimeException("Category not found");
+            throw new RuntimeException("カテゴリーが見つかりません");
         }
 
         // 削除カテゴリーをタスクで使用している場合

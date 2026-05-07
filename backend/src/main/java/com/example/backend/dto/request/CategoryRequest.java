@@ -16,4 +16,6 @@ public class CategoryRequest {
     private Boolean deleted;
 
     private String color;
+
+    private Long userId;
 }

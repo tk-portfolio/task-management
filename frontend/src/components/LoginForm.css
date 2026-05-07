@@ -1,0 +1,105 @@
+/* 画面全体を覆うオーバーレイ */
+.login-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(8px);
+    /* 背景をボカす */
+}
+
+/* フォームのカード */
+.login-form-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 380px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.login-form-card h2 {
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: #2c3e50;
+    font-size: 1.8rem;
+}
+
+/* 入力グループ */
+.form-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #64748b;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    /* paddingを含めた幅計算 */
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #409eff;
+}
+
+/* ログインボタン */
+.login-submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #409eff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+}
+
+.login-submit-btn:hover {
+    background-color: #337ecc;
+    box-shadow: 0 4px 12px rgba(64, 158, 255, 0.4);
+    transform: translateY(-1px);
+}
+
+/* ユーザー登録ボタン */
+.register-submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #27cc2d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+}
+
+.register-submit-btn:hover {
+    background-color: #4caf50;
+    box-shadow: 0 4px 12px rgba(64, 158, 255, 0.4);
+    transform: translateY(-1px);
+}

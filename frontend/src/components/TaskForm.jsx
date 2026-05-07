@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./TaskForm.css";
 
-export default function TaskForm({ categories, editingTask, setEditingTask, fetchTasks }) {
+export default function TaskForm({ categories, editingTask, setEditingTask, fetchTasks, token }) {
 
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -75,12 +75,14 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
             : `${baseUrl}/api/task/add`;
 
         const method = isEdit ? "PUT" : "POST";
+        const token = localStorage.getItem("token");
 
         try {
             const res = await fetch(url, {
                 method,
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
                 },
                 body: JSON.stringify(payload),
             });

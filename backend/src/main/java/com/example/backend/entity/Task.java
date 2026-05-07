@@ -54,6 +54,8 @@ public class Task {
 
     private Integer progress;
 
+    private Long userId;
+
     // ===== Getter =====
 
     public Long getId() {
@@ -96,6 +98,10 @@ public class Task {
         return progress;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
     // ===== Setter =====
 
     public void setId(Long id) {
@@ -136,5 +142,9 @@ public class Task {
 
     public void setProgress(Integer progress) {
         this.progress = progress;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

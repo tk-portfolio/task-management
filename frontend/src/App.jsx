@@ -2,6 +2,7 @@ import "./App.css";
 
 import CategoryForm from "./components/CategoryForm";
 import CategoryList from "./components/CategoryList";
+import LoginForm from "./components/LoginForm";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 
@@ -20,10 +21,29 @@ function App() {
     editingTask,
     setEditingTask,
     fetchTasks,
+    token,
+    setToken,
+    handleLogin,
   } = useApp();
+
+  // トークンがない場合は「ログイン画面」だけを返す
+  if (!token || token === "" || typeof token === 'object') {
+    return (
+      <div className="app-container">
+        <div className="login-modal-overlay">
+          <LoginForm onLogin={handleLogin} />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="app-container">
+      <button onClick={() => {
+        localStorage.removeItem("token");
+        window.location.reload();
+      }}>ログアウト</button>
+
       <header className="app-header">
         <h1>✅ タスク管理</h1>
       </header>
@@ -35,6 +55,7 @@ function App() {
             editingTask={editingTask}
             setEditingTask={setEditingTask}
             fetchTasks={fetchTasks}
+            token={token}
           />
         </section>
 
@@ -69,7 +90,10 @@ function App() {
         </section>
 
         <section className="form-section">
-          <CategoryForm setCategories={setCategories} />
+          <CategoryForm
+            setCategories={setCategories}
+            token={token}
+          />
         </section>
 
         <aside className="category-section">

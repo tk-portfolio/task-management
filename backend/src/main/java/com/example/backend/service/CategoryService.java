@@ -7,9 +7,9 @@ import com.example.backend.dto.response.CategoryResponse;
 
 public interface CategoryService {
 
-    List<CategoryResponse> getAllCategories();
+    List<CategoryResponse> getAllCategories(Long userId);
 
     CategoryResponse addCategory(CategoryRequest categoryRequest);
 
-    void deleteCategory(Long id);
+    void deleteCategory(Long id, Long userId);
 }

@@ -32,6 +32,8 @@ public class TaskResponse {
 
     private Integer progress;
 
+    private Long userId;
+
     public static TaskResponse fromEntity(Task task) {
         return new TaskResponse(
                 task.getId(),
@@ -43,6 +45,7 @@ public class TaskResponse {
                 task.getDeleted(),
                 task.getCreatedAt(),
                 task.getUpdatedAt(),
-                task.getProgress());
+                task.getProgress(),
+                task.getUserId());
     }
 }

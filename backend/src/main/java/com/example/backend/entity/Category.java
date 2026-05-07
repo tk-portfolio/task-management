@@ -43,6 +43,9 @@ public class Category {
 
     private String color;
 
+    @Column(name = "user_id")
+    private Long userId;
+
     // ===== Getter =====
 
     public Long getId() {
@@ -71,6 +74,10 @@ public class Category {
 
     public String getColor() {
         return color;
+    }
+
+    public Long getUserId() {
+        return userId;
     }
 
     // ===== Setter =====
@@ -103,4 +110,7 @@ public class Category {
         this.color = color;
     }
 
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 }

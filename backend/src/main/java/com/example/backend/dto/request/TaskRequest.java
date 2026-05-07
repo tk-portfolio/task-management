@@ -33,4 +33,6 @@ public class TaskRequest {
     @Min(0)
     @Max(100)
     private Integer progress;
+
+    private Long userId;
 }

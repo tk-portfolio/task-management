@@ -1,6 +1,7 @@
 package com.example.backend.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -20,8 +21,8 @@ public class TaskServiceImpl implements TaskService {
     private final TaskRepository taskRepository;
 
     // すべてのタスクを取得
-    public List<TaskResponse> getAllTasks() {
-        List<Task> tasks = taskRepository.findAll();
+    public List<TaskResponse> getAllTasks(Long userId) {
+        List<Task> tasks = taskRepository.findByUserId(userId);
         return tasks.stream()
                 .map(TaskResponse::fromEntity)
                 .collect(Collectors.toList());
@@ -38,6 +39,7 @@ public class TaskServiceImpl implements TaskService {
         task.setDueDate(taskRequest.getDueDate());
         task.setCategoryId(taskRequest.getCategoryId());
         task.setProgress(taskRequest.getProgress());
+        task.setUserId(taskRequest.getUserId());
 
         Task saved = taskRepository.save(task);
 
@@ -63,10 +65,19 @@ public class TaskServiceImpl implements TaskService {
     }
 
     // タスク削除
-    public void deleteTask(Long id) {
+    public void deleteTask(Long id, Long userId) {
+
+        // 自分のタスクの中にそのタスクがあるか検索
+        Optional<Task> taskOpt = taskRepository.findByIdAndUserId(id, userId);
+
         if (!taskRepository.existsById(id)) {
             throw new RuntimeException("タスクが存在しません");
         }
+
+        if (!taskOpt.isPresent()) {
+            throw new RuntimeException("他人のタスクは削除できません");
+        }
+
         taskRepository.deleteById(id);
     }
 }

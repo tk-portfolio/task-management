@@ -6,30 +6,67 @@ export const useApp = () => {
     const [sortBy, setSortBy] = useState("id");
     const [editingTask, setEditingTask] = useState(null);
     const baseUrl = process.env.REACT_APP_API_URL;
+    const [token, setToken] = useState(localStorage.getItem("token"));
 
-    // タスク一覧取得
+    const handleLogin = (receivedToken) => {
+        setToken(receivedToken);
+    };
+
+    // タスク一覧表示
     const fetchTasks = () => {
-        fetch(`${baseUrl}/api/task/search`)
-            // fetch("http://localhost:8080/api/task/search")
-            .then((res) => res.json())
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        fetch(`${baseUrl}/api/task/search`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
+        })
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error("認証に失敗しました。再ログインしてください。");
+                }
+                return res.json();
+            })
             .then(setTasks)
             .catch(console.error);
     };
 
-    // カテゴリ一覧取得
+    // カテゴリー一覧表示
     const fetchCategories = () => {
-        fetch(`${baseUrl}/api/categories/search`)
-            .then((res) => res.json())
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        fetch(`${baseUrl}/api/categories/search`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
+        })
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error("認証に失敗しました。再ログインしてください。");
+                }
+                return res.json();
+            })
             .then(setCategories)
             .catch(console.error);
     };
 
+
     // タスク削除
     const taskDelete = async (id) => {
+        const token = localStorage.getItem("token");
+
         try {
             const res = await fetch(`${baseUrl}/api/task/${id}`, {
-                // const res = await fetch(`http://localhost:8080/api/task/${id}`, {
                 method: "DELETE",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                }
             });
             if (!res.ok) throw new Error();
 
@@ -41,9 +78,14 @@ export const useApp = () => {
 
     // カテゴリー削除
     const categoryDelete = async (id) => {
+        const token = localStorage.getItem("token");
+
         try {
             const res = await fetch(`${baseUrl}/api/categories/${id}`, {
                 method: "DELETE",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                }
             });
 
             if (!res.ok) {
@@ -53,11 +95,18 @@ export const useApp = () => {
             }
 
             fetchCategories();
-
         } catch {
             alert("削除エラー");
         }
     };
+
+    useEffect(() => {
+        if (!token) return;
+
+        fetchTasks();
+        fetchCategories();
+
+    }, [token]);
 
     // ソート
     const sortedTasks = [...tasks].sort((a, b) => {
@@ -93,12 +142,6 @@ export const useApp = () => {
         return a.id - b.id;
     });
 
-    // 初期表示
-    useEffect(() => {
-        fetchTasks();
-        fetchCategories();
-    }, []);
-
     return {
         tasks,
         categories,
@@ -112,5 +155,8 @@ export const useApp = () => {
         editingTask,
         setEditingTask,
         fetchTasks,
+        handleLogin,
+        token,
+        setToken,
     };
 };

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./CategoryForm.css";
 
-export default function CategoryForm({ setCategories }) {
+export default function CategoryForm({ setCategories, token }) {
 
     const [isExpanded, setIsExpanded] = useState(false);
     const [name, setName] = useState("");
@@ -17,14 +17,17 @@ export default function CategoryForm({ setCategories }) {
             name,
             description,
             deleted,
-            color
+            color,
         };
+
+        const token = localStorage.getItem("token");
 
         try {
             const res = await fetch(`${baseUrl}/api/categories/add`, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
                 },
                 body: JSON.stringify(newCategory)
             });

@@ -17,11 +17,14 @@ public class CategoryResponse {
 
     private String Color;
 
+    private Long userId;
+
     public static CategoryResponse fromEntity(Category category) {
         return new CategoryResponse(
                 category.getId(),
                 category.getName(),
                 category.getDescription(),
-                category.getColor());
+                category.getColor(),
+                category.getUserId());
     }
 }
