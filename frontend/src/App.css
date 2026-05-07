@@ -80,6 +80,27 @@ body {
   box-shadow: 0 4px 10px rgba(64, 158, 255, 0.3);
 }
 
+/* ログアウトボタン */
+.logout-btn {
+  width: auto;
+  padding: 14px;
+  background-color: #f56c6c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+}
+
+.logout-btn:hover {
+  background-color: #fd8f8f;
+  box-shadow: 0 4px 12px rgba(64, 158, 255, 0.4);
+  transform: translateY(-1px);
+}
+
 /* 少し高度：PCサイズではフォームとリストを横に並べることも可能 */
 @media (min-width: 768px) {
   .app-content {

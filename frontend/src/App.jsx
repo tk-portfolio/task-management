@@ -39,10 +39,12 @@ function App() {
 
   return (
     <div className="app-container">
-      <button onClick={() => {
-        localStorage.removeItem("token");
-        window.location.reload();
-      }}>ログアウト</button>
+      <button
+        className="logout-btn"
+        onClick={() => {
+          localStorage.removeItem("token");
+          window.location.reload();
+        }}>ログアウト</button>
 
       <header className="app-header">
         <h1>✅ タスク管理</h1>
