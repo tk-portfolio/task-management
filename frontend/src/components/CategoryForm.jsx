@@ -62,7 +62,7 @@ export default function CategoryForm({ setCategories, token }) {
                     className={`toggle-btn ${isExpanded ? "is-active" : ""}`}
                     onClick={() => setIsExpanded(!isExpanded)}
                 >
-                    {isExpanded ? "-" : "+"}
+                    {isExpanded ? "−" : "＋"}
                 </button>
             </div>
 
