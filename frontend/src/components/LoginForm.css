@@ -32,6 +32,13 @@
     font-size: 1.8rem;
 }
 
+.login-form-card h3 {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    color: #ef2020;
+    font-size: 0.9rem;
+}
+
 /* 入力グループ */
 .form-group {
     text-align: left;

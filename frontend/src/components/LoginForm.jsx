@@ -136,6 +136,7 @@ const LoginForm = ({ onLogin }) => {
                         ユーザー登録
                     </button>
                 </form>
+                <h3>⚠️Renderの起動に1分ほど時間がかかります。<br></br>起動するまでユーザー登録、ログインができません。</h3>
             </div>
         </div>
     );
