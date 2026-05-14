@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./CategoryForm.css";
 
 export default function CategoryForm({ setCategories, token }) {
@@ -9,6 +9,7 @@ export default function CategoryForm({ setCategories, token }) {
     const [deleted, setDeleted] = useState(false);
     const [color, setColor] = useState("#409eff");
     const [errors, setErrors] = useState({});
+    const formRef = useRef(null);
     const baseUrl = process.env.REACT_APP_API_URL;
 
     // バリデーションチェック
@@ -30,6 +31,14 @@ export default function CategoryForm({ setCategories, token }) {
         setErrors(newErrors);
 
         const isValid = Object.keys(newErrors).length === 0;
+
+        // エラーがあればフォームの一番上にスクロール
+        if (!isValid) {
+            formRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }
 
         return isValid;
     };
@@ -80,6 +89,27 @@ export default function CategoryForm({ setCategories, token }) {
         }
     };
 
+    const handleCancel = () => {
+
+        // リセット
+        setName("");
+        setDescription("");
+        setDeleted(false);
+        setColor("#409eff");
+
+        setErrors({});
+        setIsExpanded(false);
+
+        // キャンセル時に画面がフォームの最下部にスクロールされる
+        setTimeout(() => {
+            formRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "end",
+            });
+        }, 100);
+
+    };
+
     return (
         <div className="category-form-container">
             <div className="category-form-header">
@@ -93,7 +123,10 @@ export default function CategoryForm({ setCategories, token }) {
                 </button>
             </div>
 
-            <div className={`form-expandable ${isExpanded ? "is-open" : ""}`}>
+            <div
+                ref={formRef}
+                className={`form-expandable ${isExpanded ? "is-open" : ""}`}
+            >
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>カテゴリー名</label>
@@ -133,6 +166,10 @@ export default function CategoryForm({ setCategories, token }) {
                             <div className="selected-color-text">選択中: <strong>{color.toUpperCase()}</strong></div>
                         </div>
                     </div>
+
+                    <button type="button" className="cancel-button" onClick={handleCancel}>
+                        キャンセル
+                    </button>
 
                     <button type="submit" className="submit-button">登録</button>
                 </form>
