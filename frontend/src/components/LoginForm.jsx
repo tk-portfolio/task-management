@@ -135,8 +135,10 @@ const LoginForm = ({ onLogin }) => {
                     <button type="button" onClick={handleRegister} className="register-submit-btn">
                         ユーザー登録
                     </button>
+
                 </form>
                 <h3>⚠️Renderの起動に1分ほど時間がかかります。<br></br>起動するまでユーザー登録、ログインができません。</h3>
+                <h2>Demo User<br></br>username: demo<br></br>password: demo123</h2>
             </div>
         </div>
     );
