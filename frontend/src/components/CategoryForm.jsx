@@ -8,10 +8,37 @@ export default function CategoryForm({ setCategories, token }) {
     const [description, setDescription] = useState("");
     const [deleted, setDeleted] = useState(false);
     const [color, setColor] = useState("#409eff");
+    const [errors, setErrors] = useState({});
     const baseUrl = process.env.REACT_APP_API_URL;
+
+    // バリデーションチェック
+    const validate = () => {
+        const newErrors = {};
+
+        if (!name.trim()) {
+            newErrors.name = "カテゴリー名は必須です";
+        }
+
+        if (name.length > 50) {
+            newErrors.name = "50文字以内で入力してください";
+        }
+
+        if (description.length > 200) {
+            newErrors.description = "200文字以内で入力してください";
+        }
+
+        setErrors(newErrors);
+
+        const isValid = Object.keys(newErrors).length === 0;
+
+        return isValid;
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // 入力エラー
+        if (!validate()) return;
 
         const newCategory = {
             name,
@@ -74,6 +101,7 @@ export default function CategoryForm({ setCategories, token }) {
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
+                        {errors.name && <p className="error">{errors.name}</p>}
                     </div>
 
                     <div className="form-group">
@@ -82,6 +110,7 @@ export default function CategoryForm({ setCategories, token }) {
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
+                        {errors.description && <p className="error">{errors.description}</p>}
                     </div>
 
                     <div className="form-group">

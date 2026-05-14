@@ -16,10 +16,10 @@ import lombok.NoArgsConstructor;
 public class TaskRequest {
 
     @NotNull
-    @Size(max = 50)
+    @Size(max = 100)
     private String title;
 
-    @Size(max = 200)
+    @Size(max = 500)
     private String description;
 
     private Integer priority;

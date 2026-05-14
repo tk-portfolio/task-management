@@ -24,12 +24,12 @@ export default function TaskForm({ categories, editingTask, setEditingTask, fetc
             newErrors.title = "タスク名は必須です";
         }
 
-        if (title.length > 50) {
-            newErrors.title = "50文字以内で入力してください";
+        if (title.length > 100) {
+            newErrors.title = "100文字以内で入力してください";
         }
 
-        if (description.length > 200) {
-            newErrors.description = "200文字以内で入力してください";
+        if (description.length > 500) {
+            newErrors.description = "500文字以内で入力してください";
         }
 
         if (categoryId === 0) {
